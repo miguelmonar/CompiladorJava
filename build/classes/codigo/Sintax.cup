@@ -1,0 +1,53 @@
+package codigo;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+    
+    public void syntax_error(Symbol s){
+        this.s = s;
+    }
+
+    public Symbol getS(){
+        return this.s;
+}
+:};
+
+terminal Int,Double, Float, If, Else, While, Boolean, Break, Default, Do, Switch, Try, Void, Char, String,
+    Catch, Igual, Suma, Resta, Multiplicacion, Division, Parentesis_a, Parentesis_c,
+    Llave_a, Llave_c, Corchete_a, Corchete_c, Comillas, Comilla, Op_relacional, Op_logico, Coma, Main, P_coma, Identificador, Numero, NumeroFlotante, ERROR;
+non terminal INICIO, SENTENCIA, DECLARACION;
+
+start with INICIO;
+
+INICIO ::= Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA Llave_c |
+           Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA Llave_c |
+           Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Int Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c |
+           Main Parentesis_a Parentesis_c Llave_a SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA SENTENCIA Llave_c
+;
+
+SENTENCIA ::=
+             Int Identificador P_coma | Int Identificador Igual Numero P_coma | Int Identificador Igual Identificador P_coma |
+             Float Identificador P_coma | Float Identificador Igual Numero P_coma | Float Identificador Igual Identificador P_coma |
+             String Identificador Igual Comillas Comillas P_coma | String Identificador Igual Comillas Identificador Comillas P_coma |
+             Double Identificador P_coma | Double Identificador Igual Numero P_coma | Double Identificador Igual Identificador P_coma |
+             Char Identificador Igual Comilla Comilla P_coma | Char Identificador Igual Comilla Identificador Comilla P_coma |
+             Boolean Identificador Igual P_coma | Boolean Identificador Igual Identificador P_coma |
+             If Parentesis_a Identificador Op_relacional Identificador Parentesis_c Llave_a SENTENCIA Llave_c | 
+             If Parentesis_a Identificador Op_relacional Identificador Parentesis_c Llave_a SENTENCIA Llave_c Else Llave_a SENTENCIA Llave_c 
+;
+ 
